@@ -75,11 +75,11 @@ Q1 = numeric_df.quantile(0.25)  # First quartile
 Q3 = numeric_df.quantile(0.75)  # Third quartile
 IQR = Q3 - Q1           # Interquartile Range
 
-# Oblicz dolną i górną granicę
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
+# Calculate lower and upper bound
+lower_bound = Q1 - 3 * IQR
+upper_bound = Q3 + 3 * IQR
 
-# Zidentyfikuj wartości odstające
+# Find outliers
 outliers = numeric_df[(numeric_df < lower_bound) | (numeric_df > upper_bound)]
 
 outliers.drop(['fcollege','mcollege','home','urban', 'rownames'],axis=1,inplace=True)
