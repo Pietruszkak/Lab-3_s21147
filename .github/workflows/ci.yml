@@ -1,0 +1,30 @@
+# .github/workflows/ci.yml
+
+name: CI/CD Pipeline for ML Model Training
+
+# Wykonuj akcje przy każdym pushu do gałęzi main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  data-processing: 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+  
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: install dependencies
+        run: pip install -r requirements.txt
+
+      - name: generate graphs for the dataframe
+        run: python get_statistics.py
+
+      - name: run model_training.py
+        run: python model_training.py
