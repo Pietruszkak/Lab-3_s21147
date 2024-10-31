@@ -2,14 +2,4 @@ pandas
 numpy
 matplotlib
 seaborn
-sklearn
-
-
-
-
-# Split 'df_no_outliers'
-X_no_outliers = df_no_outliers.drop(columns=['rownames'])
-y_no_outliers = df_no_outliers['score']
-X_train_no_outliers, X_test_no_outliers, y_train_no_outliers, y_test_no_outliers = train_test_split(
-    X_no_outliers, y_no_outliers, test_size=0.4, random_state=42
-)
+scikit-learn
