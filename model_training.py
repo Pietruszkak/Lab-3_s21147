@@ -64,5 +64,5 @@ X_train, y_train, X_test, y_test=split_df(df)
 model, results=evaluate_model(grad_reg,X_train, y_train, X_test, y_test)
 
 joblib.dump(model, 'score_pred_model.joblib')
-joblib.dump(le, 'LabelEncoder.joblib')
+joblib.dump(label_encoders, 'LabelEncoder.joblib')
 joblib.dump(scaler, 'StandardScaler.joblib')
