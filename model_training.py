@@ -14,7 +14,7 @@ df.drop(columns=['rownames'],inplace=True)
 label_encoders = {}
 categorical_columns = ['gender', 'ethnicity', 'income', 'region']
 boolean_columns = ['fcollege', 'mcollege', 'home', 'urban']
-numerical_columns = ['score', 'unemp', 'wage', 'distance', 'tuition', 'education']
+numerical_columns = ['unemp', 'wage', 'distance', 'tuition', 'education']
 
 # Encoding categorical columns
 for column in categorical_columns:
@@ -28,6 +28,7 @@ for column in boolean_columns:
 
 # Scale numerical columns
 scaler = StandardScaler()
+score_scaler = StandardScaler()
 df[numerical_columns] = scaler.fit_transform(df[numerical_columns])
 
 
@@ -63,3 +64,5 @@ X_train, y_train, X_test, y_test=split_df(df)
 model, results=evaluate_model(grad_reg,X_train, y_train, X_test, y_test)
 
 joblib.dump(model, 'score_pred_model.joblib')
+joblib.dump(le, 'LabelEncoder.joblib')
+joblib.dump(scaler, 'StandardScaler.joblib')
