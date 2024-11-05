@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import root_mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import cross_val_score
+import joblib
 
 df=pd.read_csv('CollegeDistance.csv')
 
@@ -55,9 +56,10 @@ def evaluate_model(model, X_train, y_train, X_test, y_test):
     print(f"Root Mean Squared Error (MSE): {mse:.2f}")
     print(f"Mean Absolute Error (MAE): {mae:.2f}\n")
     print('\n')
-    return results
+    return model, results
 #evaluate models
 X_train, y_train, X_test, y_test=split_df(df)
 
-results=evaluate_model(grad_reg,X_train, y_train, X_test, y_test)
+model, results=evaluate_model(grad_reg,X_train, y_train, X_test, y_test)
 
+joblib.dump(model, 'score_pred_model.joblib')
